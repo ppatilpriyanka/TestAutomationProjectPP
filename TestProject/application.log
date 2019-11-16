@@ -16559,3 +16559,21 @@ DEBUG	2019-11-12 20:09:43,843	157302	org.apache.http.impl.conn.PoolingHttpClient
 DEBUG	2019-11-12 20:09:43,843	157302	org.apache.http.impl.conn.PoolingHttpClientConnectionManager	[Forwarding quit on session 9fd7f58e0d6daa7953d184c6dd49bc4a to remote]	Connection released: [id: 0][route: {}->http://localhost:29192][total kept alive: 1; route allocated: 1 of 2000; total allocated: 1 of 2000]
 DEBUG	2019-11-12 20:09:43,905	157364	org.apache.http.impl.conn.PoolingHttpClientConnectionManager	[Forwarding quit on session 9fd7f58e0d6daa7953d184c6dd49bc4a to remote]	Closing connections idle longer than 0 SECONDS
 DEBUG	2019-11-12 20:09:43,906	157365	org.apache.http.impl.conn.DefaultManagedHttpClientConnection	[Forwarding quit on session 9fd7f58e0d6daa7953d184c6dd49bc4a to remote]	http-outgoing-0: Close connection
+[main] INFO  testPackage.LoginTest  - browser : chrome
+[main] INFO  testPackage.LoginTest  - url : https://test.salesforce.com/
+[main] INFO  testPackage.LoginTest  - *************** Start execution for testcase : verifyLogin ***************
+[main] INFO  testPackage.LoginTest  - ******Login1********
+[main] INFO  testPackage.LoginTest  - *************** Completed execution for testcase : verifyLogin ***************
+[main] INFO  testPackage.LoginTest  - *************** Start execution for testcase : verifyLoginErrorMessage ***************
+[main] INFO  testPackage.LoginTest  - On login error is displayed
+[main] INFO  testPackage.LoginTest  - Error message is displayed successfully
+[main] INFO  testPackage.LoginTest  - *************** Completed execution for testcase : verifyLoginErrorMessage ***************
+[main] INFO  testPackage.LoginTest  - browser : chrome
+[main] INFO  testPackage.LoginTest  - url : https://test.salesforce.com/
+[main] INFO  testPackage.LoginTest  - *************** Start execution for testcase : verifyLogin ***************
+[main] INFO  testPackage.LoginTest  - ******Login1********
+[main] INFO  testPackage.LoginTest  - *************** Completed execution for testcase : verifyLogin ***************
+[main] INFO  testPackage.LoginTest  - *************** Start execution for testcase : verifyLoginErrorMessage ***************
+[main] INFO  testPackage.LoginTest  - On login error is displayed
+[main] INFO  testPackage.LoginTest  - Error message is displayed successfully
+[main] INFO  testPackage.LoginTest  - *************** Completed execution for testcase : verifyLoginErrorMessage ***************
