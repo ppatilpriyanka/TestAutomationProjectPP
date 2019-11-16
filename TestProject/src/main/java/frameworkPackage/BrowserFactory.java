@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import frameworkPackage.util.Util;
+
 /**
  * This page instantiate the driver for specified browser
  * 
@@ -12,13 +14,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  */
 public class BrowserFactory {
 
-	public static WebDriver driver;
+	private static WebDriver driver;
 
 	/**
 	 * Private constructor to avoid instantiation
 	 */
-	private BrowserFactory() {
-	}
+	private BrowserFactory() {}
 
 	/**
 	 * Get the instance of specified browser
@@ -27,7 +28,7 @@ public class BrowserFactory {
 	 *            : name of browser
 	 * @return : web driver of browser
 	 */
-	public static WebDriver getDriver(String browserName) {
+	private static WebDriver getDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 			driver = new ChromeDriver();
@@ -38,6 +39,18 @@ public class BrowserFactory {
 			driver = new FirefoxDriver(capabilities);
 		}
 		driver.manage().window().maximize();
+		return driver;
+	}
+	
+	public static WebDriver getInstance() {
+		if(driver == null) {
+			// Fetching browser details
+			String browser = Util.readDataFromPropertiesFile("browser");
+			Util.logInfo("Using " + browser);
+			
+			driver = getDriver(browser);
+		}
+		
 		return driver;
 	}
 }
