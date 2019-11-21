@@ -10,8 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +23,7 @@ import frameworkPackage.util.Util;
 
 public class ElementClass {
 
-	private WebDriver driver = BrowserFactory.getInstance();
+	private WebDriver driver = DriverManager.getInstance();
 
 
 	/**
@@ -29,10 +31,11 @@ public class ElementClass {
 	 */
 	public void waitForDomToLoad() {
 		try {
-			WebDriverWait driverWait = new WebDriverWait(driver, 30);
+			WebDriverWait driverWait = new WebDriverWait(driver, 60);
 			driverWait.until(ExpectedConditions.jsReturnsValue("return document.readyState=='complete';"));
-		} catch (Exception ex) {
+		} catch (TimeoutException ex) {
 			takeScreenshotAndPrintExceptionTrace(ex);
+			throw ex;
 		}
 	}
 
@@ -47,8 +50,9 @@ public class ElementClass {
 			waitForDomToLoad();
 			WebDriverWait driverWait = new WebDriverWait(driver, 30);
 			driverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		} catch (Exception ex) {
+		} catch (NoSuchElementException ex) {
 			takeScreenshotAndPrintExceptionTrace(ex);
+			throw ex;
 		}
 	}
 
@@ -81,8 +85,9 @@ public class ElementClass {
 			WebElement ele = driver.findElement(locator);
 			ele.clear();
 			ele.sendKeys(value);
-		} catch (Exception ex) {
+		} catch (NoSuchElementException ex) {
 			takeScreenshotAndPrintExceptionTrace(ex);
+			throw ex;
 		}
 	}
 
@@ -96,8 +101,9 @@ public class ElementClass {
 		try {
 			waitForDomToLoad();
 			driver.findElement(locator).click();
-		} catch (Exception ex) {
+		} catch (NoSuchElementException ex) {
 			takeScreenshotAndPrintExceptionTrace(ex);
+			throw ex;
 		}
 	}
 

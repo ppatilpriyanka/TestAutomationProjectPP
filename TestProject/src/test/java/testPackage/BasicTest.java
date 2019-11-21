@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
-import frameworkPackage.BrowserFactory;
+import frameworkPackage.DriverManager;
 import frameworkPackage.util.Util;
 
 /**
@@ -20,7 +20,7 @@ import frameworkPackage.util.Util;
 
 public class BasicTest {
 
-	private static WebDriver driver = BrowserFactory.getInstance();
+	private static WebDriver driver = DriverManager.getInstance();
 
 	// @BeforeSuite
 	// public void beforeSuite() {
@@ -35,7 +35,7 @@ public class BasicTest {
 	@BeforeTest
 	public void beforeTest(ITestContext context) {
 		// Fetching URL
-		String url = Util.readDataFromPropertiesFile("url");
+        String url = Util.readDataFromPropertiesFile("url");
 		Util.logInfo("Automating " + url);
 		driver.get(url);
 	}

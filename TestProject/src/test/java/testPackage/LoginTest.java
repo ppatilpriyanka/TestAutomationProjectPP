@@ -23,7 +23,10 @@ public class LoginTest extends BasicTest {
 	}
 
 	@Test
-	public void verifyLogin() {
-		Util.logInfo("Login1");
+	public void verifyEnterPasswordError() {
+		loginPage = new LoginPage();
+		loginPage.enterUserName("lpolpo").clickLoginButtonWithError();
+		verifySafely(true, loginPage.verifyErrorIsDisplayed(), "On login error is displayed");
+		Util.logInfo("Error message is displayed successfully");
 	}
 }

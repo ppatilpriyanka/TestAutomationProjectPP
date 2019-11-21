@@ -1,0 +1,15 @@
+2019-11-21 08:29:53 INFO  DriverManager#19 - Using Chrome
+2019-11-21 08:30:00 INFO  BasicTest#39 - Automating https://test.salesforce.com/
+2019-11-21 08:30:00 INFO  BasicTest#39 - Automating https://test.salesforce.com/
+2019-11-21 08:30:07 INFO  BasicTest#45 - ===== Start execution for testcase : verifyEnterPasswordError1 =====
+2019-11-21 08:30:07 INFO  DriverManager#19 - Using Chrome
+2019-11-21 08:30:07 INFO  BasicTest#45 - ===== Start execution for testcase : verifyEnterPasswordError =====
+2019-11-21 08:30:07 INFO  DriverManager#19 - Using Chrome
+2019-11-21 08:30:48 INFO  BasicTest#50 - ===== Completed execution for testcase : verifyEnterPasswordError1 =====
+2019-11-21 08:30:48 INFO  BasicTest#45 - ===== Start execution for testcase : verifyLoginErrorMessage1 =====
+2019-11-21 08:30:48 INFO  BasicTest#50 - ===== Completed execution for testcase : verifyEnterPasswordError =====
+2019-11-21 08:30:48 INFO  BasicTest#45 - ===== Start execution for testcase : verifyLoginErrorMessage =====
+2019-11-21 08:30:48 INFO  DriverManager#19 - Using Chrome
+2019-11-21 08:30:48 INFO  DriverManager#19 - Using Chrome
+2019-11-21 08:31:19 INFO  BasicTest#50 - ===== Completed execution for testcase : verifyLoginErrorMessage1 =====
+2019-11-21 08:31:19 INFO  BasicTest#50 - ===== Completed execution for testcase : verifyLoginErrorMessage =====

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 
 import frameworkPackage.BrowserFactory;
+import frameworkPackage.DriverManager;
 import frameworkPackage.ElementClass;
 
 public class Util {
@@ -22,25 +23,25 @@ public class Util {
 		logger.info(message);
 	}
 	
-	/**
-	 * Read the data from Util file
-	 * 
-	 * @param key
-	 *            : key whose value user wants to retrieve
-	 * @return : value as per specified key
-	 */
-	public static String readDataFromPropertiesFile(String key) {
-		properties = new Properties();
-		String value = null;
-		try (InputStream input = new FileInputStream("src/main/resources/data.properties")) {
-			properties.load(input);
-			value = properties.getProperty(key);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		return value;
-	}
-	
+    /**
+     * Read the data from Util file
+     * 
+     * @param key
+     *            : key whose value user wants to retrieve
+     * @return : value as per specified key
+     */
+    public static String readDataFromPropertiesFile(String key) {
+        properties = new Properties();
+        String value = null;
+        try (InputStream input = new FileInputStream("src/main/resources/data.properties")) {
+            properties.load(input);
+            value = properties.getProperty(key);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return value;
+    }
+
 	/**
 	 * Verify the expected and actual result using Assert
 	 * 
@@ -58,9 +59,9 @@ public class Util {
 		} catch (Exception ex) {
 			Util.logInfo(message + " expected true but found false. Refer screenshot at location -> "
 					+ System.getProperty("user.dir") + "\\screenshots\\" + System.currentTimeMillis()
-					+ ".jpg. Application URL is " + BrowserFactory.getInstance().getCurrentUrl());
+					+ ".jpg. Application URL is " + DriverManager.getInstance().getCurrentUrl());
 			new ElementClass().takeScreenshot();
-			ex.printStackTrace();
+			throw new AssertionError();
 		}
 	}
 }

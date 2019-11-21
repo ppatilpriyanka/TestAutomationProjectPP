@@ -5,8 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import frameworkPackage.util.Util;
-
 /**
  * This page instantiate the driver for specified browser
  * 
@@ -14,12 +12,21 @@ import frameworkPackage.util.Util;
  */
 public class BrowserFactory {
 
-	private static WebDriver driver;
+	private static BrowserFactory browserFactory = null;
+	private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
 	/**
 	 * Private constructor to avoid instantiation
 	 */
-	private BrowserFactory() {}
+	private BrowserFactory() {
+	}
+
+	public static BrowserFactory getBrowserFactoryInstance() {
+		if (browserFactory == null) {
+			browserFactory = new BrowserFactory();
+		}
+		return browserFactory;
+	}
 
 	/**
 	 * Get the instance of specified browser
@@ -28,29 +35,21 @@ public class BrowserFactory {
 	 *            : name of browser
 	 * @return : web driver of browser
 	 */
-	private static WebDriver getDriver(String browserName) {
-		if (browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-			capabilities.setCapability("marionette", true);
-			driver = new FirefoxDriver(capabilities);
+	public void setDriver(String browserName) {
+		if (webDriver.get() == null) {
+			if (browserName.equalsIgnoreCase("Chrome")) {
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+				webDriver.set(new ChromeDriver());
+			} else if (browserName.equalsIgnoreCase("Firefox")) {
+				System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				capabilities.setCapability("marionette", true);
+				webDriver.set(new FirefoxDriver(capabilities));
+			}
 		}
-		driver.manage().window().maximize();
-		return driver;
 	}
-	
-	public static WebDriver getInstance() {
-		if(driver == null) {
-			// Fetching browser details
-			String browser = Util.readDataFromPropertiesFile("browser");
-			Util.logInfo("Using " + browser);
-			
-			driver = getDriver(browser);
-		}
-		
-		return driver;
+
+	public WebDriver getDriver() {
+		return webDriver.get();
 	}
 }
