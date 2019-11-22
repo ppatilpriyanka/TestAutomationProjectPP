@@ -14,11 +14,11 @@ public class DriverManager {
 	 * @return : web driver's instance
 	 */
 	public static WebDriver getInstance() {
-		BrowserFactory browserFact = BrowserFactory.getBrowserFactoryInstance();
+
 		String browser = System.getProperty("browser");
 		Util.logInfo("Using " + browser);
-		browserFact.setDriver(browser);
-		driver = browserFact.getDriver();
+		BrowserFactory.setDriver(browser);
+		driver = BrowserFactory.getDriver();
 		driver.manage().window().maximize();
 		return driver;
 	}

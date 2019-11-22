@@ -8,7 +8,6 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
-import frameworkPackage.BrowserFactory;
 import frameworkPackage.DriverManager;
 import frameworkPackage.ElementClass;
 

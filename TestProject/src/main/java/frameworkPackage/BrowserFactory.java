@@ -12,20 +12,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  */
 public class BrowserFactory {
 
-	private static BrowserFactory browserFactory = null;
 	private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
 	/**
 	 * Private constructor to avoid instantiation
 	 */
 	private BrowserFactory() {
-	}
-
-	public static BrowserFactory getBrowserFactoryInstance() {
-		if (browserFactory == null) {
-			browserFactory = new BrowserFactory();
-		}
-		return browserFactory;
 	}
 
 	/**
@@ -35,7 +27,7 @@ public class BrowserFactory {
 	 *            : name of browser
 	 * @return : web driver of browser
 	 */
-	public void setDriver(String browserName) {
+	public static void setDriver(String browserName) {
 		if (webDriver.get() == null) {
 			if (browserName.equalsIgnoreCase("Chrome")) {
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
@@ -49,7 +41,12 @@ public class BrowserFactory {
 		}
 	}
 
-	public WebDriver getDriver() {
+	/**
+	 * Get web driver
+	 * 
+	 * @return : web driver
+	 */
+	public static WebDriver getDriver() {
 		return webDriver.get();
 	}
 }
