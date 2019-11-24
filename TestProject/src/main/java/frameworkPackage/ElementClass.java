@@ -52,7 +52,6 @@ public class ElementClass {
 			driverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		} catch (NoSuchElementException ex) {
 			takeScreenshotAndPrintExceptionTrace(ex);
-			throw ex;
 		}
 	}
 

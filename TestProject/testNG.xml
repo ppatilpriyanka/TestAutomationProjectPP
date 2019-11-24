@@ -1,14 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestSuite" parallel="tests" thread-count="2">
+<suite name="TestSuite" parallel="classes" thread-count="2">
 	<test name="LoginTest">
 		<classes>
 			<class name="testPackage.LoginTest" />
-		</classes>
-	</test>
-	<test name="LoginTest1">
-		<classes>
 			<class name="testPackage.LoginTest1" />
+			<class name="testPackage.LoginTest2" />
 		</classes>
 	</test>
 </suite>

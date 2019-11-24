@@ -19,7 +19,7 @@ public class Util {
 	public static void logInfo(String message) {
 		StackTraceElement ste = new Throwable().getStackTrace()[1];
 		logger = Logger.getLogger(ste.getClassName() + "#" + ste.getLineNumber());
-		logger.info(message);
+		logger.info(Thread.currentThread().getName() + ":" + message);
 	}
 	
     /**

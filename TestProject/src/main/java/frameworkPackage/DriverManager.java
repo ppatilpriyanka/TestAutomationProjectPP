@@ -2,11 +2,11 @@ package frameworkPackage;
 
 import org.openqa.selenium.WebDriver;
 
-import frameworkPackage.util.Util;
-
 public class DriverManager {
-
-	private static WebDriver driver;
+	
+	// Restricts object creation
+	private DriverManager() {}
+	private static ThreadLocal<WebDriver> driverFactory = new ThreadLocal<WebDriver>();
 
 	/**
 	 * Get instance of browser with Thread Local class
@@ -14,12 +14,21 @@ public class DriverManager {
 	 * @return : web driver's instance
 	 */
 	public static WebDriver getInstance() {
-
-		String browser = System.getProperty("browser");
-		Util.logInfo("Using " + browser);
-		BrowserFactory.setDriver(browser);
-		driver = BrowserFactory.getDriver();
-		driver.manage().window().maximize();
-		return driver;
+		if(driverFactory.get() == null) {
+			WebDriver webDriver = null;
+			driverFactory.set(BrowserFactory.initDriver(webDriver));
+		}
+		
+		driverFactory.get().manage().window().maximize();
+		return driverFactory.get();
+	}
+	
+	
+	public static void quitDriver() {
+		if(driverFactory.get() != null) {
+			driverFactory.get().close();
+			driverFactory.get().quit();
+			driverFactory.set(null);
+		}
 	}
 }
