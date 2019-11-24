@@ -3,6 +3,7 @@
 RemoteSystemsTempFiles/
 TestProject/.classpath
 TestProject/.project
+TestProject/application.log
 TestProject/.settings/
 TestProject/test-output/
 TestProject/target/
