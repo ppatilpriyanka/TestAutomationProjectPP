@@ -1,6 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestSuite" parallel="classes" thread-count="2">
+<listeners>
+<listener class-name="frameworkPackage.TestListener"/>
+</listeners>
 	<test name="LoginTest">
 		<classes>
 			<class name="testPackage.LoginTest" />

@@ -10,12 +10,14 @@ import org.testng.Assert;
 
 import frameworkPackage.DriverManager;
 import frameworkPackage.ElementClass;
+import io.qameta.allure.Step;
 
 public class Util {
 	
 	private static Logger logger;
 	private static Properties properties;
 
+	@Step("{0}")
 	public static void logInfo(String message) {
 		StackTraceElement ste = new Throwable().getStackTrace()[1];
 		logger = Logger.getLogger(ste.getClassName() + "#" + ste.getLineNumber());
